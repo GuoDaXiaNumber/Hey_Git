@@ -22,24 +22,24 @@
 //	
 //}
 
-//*******************Ö÷³ÌĞò********************************************
+//*******************ä¸»ç¨‹åº********************************************
 int main(void)
 {  
 	u16 PWM_X=1700,PWM_Y=1700;
-	all_init();     		//°´¼ü/LED³õÊ¼»¯   
-	RCC_Configuration();	//Ê±ÖÓ³õÊ¼»¯
-//	SysTick_Config(SystemCoreClock /10000);  //ÖÜÆÚÎª1000Î¢Ãë
+	all_init();     		//æŒ‰é”®/LEDåˆå§‹åŒ–   
+	RCC_Configuration();	//æ—¶é’Ÿåˆå§‹åŒ–
+//	SysTick_Config(SystemCoreClock /10000);  //å‘¨æœŸä¸º1000å¾®ç§’
 ////	NVIC_Configuration();
-	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2); 	 //ÉèÖÃNVICÖĞ¶Ï·Ö×é2:2Î»ÇÀÕ¼ÓÅÏÈ¼¶£¬2Î»ÏìÓ¦ÓÅÏÈ¼¶
+	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2); 	 //è®¾ç½®NVICä¸­æ–­åˆ†ç»„2:2ä½æŠ¢å ä¼˜å…ˆçº§ï¼Œ2ä½å“åº”ä¼˜å…ˆçº§
 	uart_init(115200);			
-//	TIM1_PWM_Init(1999,719);	 //²»·ÖÆµ¡£PWMÆµÂÊ=72000000/((7199+1)*(199+1))=50hz	
+//	TIM1_PWM_Init(1999,719);	 //ä¸åˆ†é¢‘ã€‚PWMé¢‘ç‡=72000000/((7199+1)*(199+1))=50hz	
 //	TIM2_PWM_Init(1999,719); 	//50hz   1950-1850-1750
 	TIM4_PWM_Init(1999,719);
 	TIM3_PWM_Init(1999,719); 	//50hz   1950-1850-1750
 //	TIM2_PWM_Init(1999,359);   //100hz  1900-1700-1500
 	
-		GPIO_ResetBits(GPIOB,GPIO_Pin_1);  //µãÁÁÊıÂë¹Ü
-//  GPIO_SetBits(GPIOB,GPIO_Pin_1);	//Ï¨ÃğÊıÂë¹Ü
+		GPIO_ResetBits(GPIOB,GPIO_Pin_1);  //ç‚¹äº®æ•°ç ç®¡
+//  GPIO_SetBits(GPIOB,GPIO_Pin_1);	//ç†„ç­æ•°ç ç®¡
 	while(1)
 	{
 //		Coordinate_X=recvalue/1000;
@@ -53,9 +53,14 @@ int main(void)
 			show_number(0);
 	}
 } 
-			
-// 
-//void SysTick_Handler(void)    //Ò»¸öĞ¡¶¨Ê±ÖĞ¶Ï//1ms  //ÖĞ¶ÏÏòÁ¿±í
+
+/*æµ‹è¯•æ›´æ”¹
+*input:null
+*output:null
+*return:null
+*note:æ³¨é‡Šæ‰ï¼Œç”¨ä¸åˆ°
+*/
+//void SysTick_Handler(void)    //ä¸€ä¸ªå°å®šæ—¶ä¸­æ–­//1ms  //ä¸­æ–­å‘é‡è¡¨
 //{
 //	static u8 count=0;
 //  if(++count==2)	
@@ -63,13 +68,13 @@ int main(void)
 //			count=0;
 //			if(recvalue) 
 //			{ 
-//				disbuf[7]=Coordinate_Y%10;           //¸öÎ»
-//				disbuf[6]=Coordinate_Y/10%10;         //Ê®Î»
-//				disbuf[5]=Coordinate_Y/100%10;        //°ÙÎ»
-//				disbuf[4]=Coordinate_X/1000%10;       //Ç§Î»
-//				disbuf[3]=Coordinate_X/10000%10;      //ÍòÎ»
+//				disbuf[7]=Coordinate_Y%10;           //ä¸ªä½
+//				disbuf[6]=Coordinate_Y/10%10;         //åä½
+//				disbuf[5]=Coordinate_Y/100%10;        //ç™¾ä½
+//				disbuf[4]=Coordinate_X/1000%10;       //åƒä½
+//				disbuf[3]=Coordinate_X/10000%10;      //ä¸‡ä½
 //				disbuf[2]=Coordinate_X/100000%10; 
-//				//disbuf[1]=num/1000000%10;      //ÍòÎ»
+//				//disbuf[1]=num/1000000%10;      //ä¸‡ä½
 //				//disbuf[0]=num/10000000%10; 
 //			} 		 
 //	}               
@@ -77,4 +82,3 @@ int main(void)
 //  display(disbuf);
 //	
 //}  
-
